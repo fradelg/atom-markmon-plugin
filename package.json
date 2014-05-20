@@ -1,0 +1,25 @@
+{
+  "name": "markmon",
+  "main": "./lib/markmon",
+  "version": "0.1",
+  "activationEvents": [
+    "markmon-preview:show"
+  ],
+  "private": false,
+  "description": "Markmon Plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fradelg/atom-markmon-plugin"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {
+    "fs-plus": "2.x",
+    "underscore-plus": "1.x"
+  },
+  "readme": "markmon",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/fradelg/atom-markmon-plugin"
+}
