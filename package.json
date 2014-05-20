@@ -1,7 +1,7 @@
 {
   "name": "markmon-preview",
   "version": "0.2.0",
-  "description": "A basic markmon plugin for Atom editor",
+  "description": "A basic markmon plugin for the Atom editor",
   "repository": {
     "type": "git",
     "url": "https://github.com/fradelg/atom-markmon-plugin"

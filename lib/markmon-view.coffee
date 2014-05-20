@@ -19,7 +19,7 @@ class MarkmonView extends ScrollView
   constructor: ->
     super
     @child = markmon()
-    @.attr 'src', "http://localhost:#{atom.config.get('markmon.port')}"
+    @.attr 'src', "http://localhost:#{atom.config.get('markmon-preview.port')}"
 
     # Register updates on every existing and future editor
     atom.workspace.eachEditor (editor) =>
@@ -44,7 +44,7 @@ class MarkmonView extends ScrollView
   # Update HTML with the editor content
   render: ->
     request
-      uri: "http://localhost:#{atom.config.get('markmon.port')}"
+      uri: "http://localhost:#{atom.config.get('markmon-preview.port')}"
       method: 'PUT'
       body: atom.workspace.getActiveEditor().getText()
     , (error, response, body) ->

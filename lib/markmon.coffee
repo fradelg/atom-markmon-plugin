@@ -15,7 +15,7 @@ module.exports =
     pane.addItem new MarkmonView()
 
   setConfigDefaults: ->
-    atom.config.setDefaults 'markmon',
+    atom.config.setDefaults 'markmon-preview',
       cmd: 'markmon'
       port: '3003'
       command: 'pandoc --mathjax'
