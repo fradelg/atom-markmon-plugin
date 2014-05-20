@@ -1,6 +1,6 @@
 {
   "name": "markmon-preview",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A basic markmon plugin for Atom editor",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   "activationEvents": [
     "markmon-preview:show"
   ],
-    "dependencies": {
+  "dependencies": {
     "fs-plus": "2.x",
     "underscore-plus": "1.x"
   },
