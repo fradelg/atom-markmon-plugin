@@ -9,5 +9,16 @@
   "license": "MIT",
   "engines": {
     "atom": "*"
-  }
+  },
+  "main": "./lib/markmon",
+  "activationEvents": [
+    "markmon-preview:show"
+  ],
+    "dependencies": {
+    "fs-plus": "2.x",
+    "underscore-plus": "1.x"
+  },
+  "readme": "markmon",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/fradelg/atom-markmon-plugin"
 }
