@@ -14,9 +14,9 @@ Commands:
 
 There are four basic parameters in settings:
 
-  * `markmon.cmd` which is the markmon executable
-  * `markmon.port` which is the local port on which server listens
-  * `markmon.stylesheet`, a CSS stylesheet for the server HTML output
-  * `markmon.command`, the Markdown converter to execute (pandoc is by default)
+  * `markmon-preview.cmd` which is the markmon executable
+  * `markmon-preview.port` which is the local port on which server listens
+  * `markmon-preview.stylesheet`, a CSS stylesheet for the server HTML output
+  * `markmon-preview.command`, the Markdown converter to execute (pandoc is by default)
 
 To solve problems with PATH take a look at [Pandoc Preview Atom Package](https://atom.io/packages/pandoc)
