@@ -5,7 +5,15 @@ language = (name) ->
   (atom.config.get('pandoc.languages') || {})[name.toLowerCase()] || 'markdown'
 
 args = ->
-  _.flatten ["--port #{atom.config.get('markmon-preview.port')}", "--command \"#{atom.config.get('markmon-preview.command')}\"", "--projectdir \"#{atom.project.path}\"", "--stylesheet \"#{atom.config.get('markmon-preview.stylesheet')}\""]
+  list = []
+  list.push "--port #{atom.config.get('markmon-preview.port')}"
+  list.push "--command \"#{atom.config.get('markmon-preview.command')}\""
+  list.push "--projectdir \"#{atom.project.path}\""
+  stylesheet = atom.config.get('markmon-preview.stylesheet')
+  list.push "--stylesheet \"#{stylesheet}\"" if stylesheet isnt ""
+  view = atom.config.get('markmon-preview.view')
+  list.push "--view \"#{view}\"" if view isnt ""
+  _.flatten list
 
 module.exports = ->
   cmd = atom.config.get('markmon-preview.cmd') + ' ' + args().join ' '

@@ -19,5 +19,5 @@ module.exports =
       cmd: 'markmon'
       port: '3003'
       command: 'pandoc --mathjax'
-      stylesheet: 'style.css'
+      stylesheet: ''
       view: ''
