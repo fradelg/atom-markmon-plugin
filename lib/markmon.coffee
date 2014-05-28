@@ -3,8 +3,8 @@ MarkmonView = require './markmon-view'
 module.exports =
   configDefaults:
     cmd: 'markmon'
-    port: '3003'
-    command: 'pandoc --mathjax'
+    port: '3000'
+    command: 'pandoc --mathjax -N -t html 5'
     stylesheet: ''
     view: ''
 
