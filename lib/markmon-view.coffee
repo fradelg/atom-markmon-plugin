@@ -25,7 +25,7 @@ class MarkmonView extends ScrollView
     atom.workspace.eachEditor (editor) =>
       ext = path.extname(editor.getPath()).split '.'
       if ext[ext.length - 1] is 'md'
-        @subscribe editor.buffer, 'saved', _.debounce((=> @render()), 500)
+        @subscribe editor.buffer, 'changed', _.debounce((=> @render()), 1000)
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->

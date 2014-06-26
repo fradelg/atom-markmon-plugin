@@ -4,13 +4,13 @@ Run [markmon](https://github.com/yyjhao/markmon) as a server, send your Markdown
 
 It supports latex mathematical expressions thanks to Mathjax and pandoc processor
 
-In order to make it work you must install `require` and `markmon` npm modules:
+In order to make it work you must install the `markmon` npm module:
 
-`npm install -g markmon require`
+`npm install -g markmon`
 
 Commands:
 
-  * `Markmon Preview: Show` will run the server and opens a new pane with the output.
+  * `Markmon Preview: Show` will run markdown as a server and opens a new pane to render the HTML output. The output is updated 1 second after the last change in the editor.
 
 There are four basic parameters in settings:
 
