@@ -8,6 +8,8 @@ In order to make it work you must install the `markmon` npm module:
 
 `npm install -g markmon`
 
+This package also depends on `request` and `underscore-plus` modules but both are bundled with the package.
+
 Commands:
 
   * `Markmon Preview: Show` will run markdown as a server and opens a new pane to render the HTML output. The output is updated 1 second after the last change in the editor.
