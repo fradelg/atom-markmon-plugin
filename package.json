@@ -15,7 +15,7 @@
     "markmon-preview:show"
   ],
   "dependencies": {
-    "fs-plus": "2.x",
+    "request": "2.x",
     "underscore-plus": "1.x"
   },
   "readme": "markmon",
