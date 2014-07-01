@@ -4,7 +4,7 @@ module.exports =
   configDefaults:
     cmd: 'markmon'
     port: '3000'
-    command: 'pandoc --mathjax -N -t html 5'
+    command: 'pandoc --mathjax'
     stylesheet: ''
     view: ''
 
