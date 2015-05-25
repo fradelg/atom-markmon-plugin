@@ -1,15 +1,13 @@
-# See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
-  '.overlayer':
-      'Enable markmon': 'markmon:toggle'
+  '.overlayer': [{label: 'Enable markmon', command: 'markmon:toggle'}]
 
 'menu': [
   {
-    'label': 'Packages'
-    'submenu': [
-      'label': 'Markmon'
-      'submenu': [
-        { 'label': 'Preview', 'command': 'markmon:show' }
+    label: 'Packages',
+    submenu: [
+      label: 'Markmon',
+      submenu': [
+        { label: 'Preview', command: 'markmon:show' }
       ]
     ]
   }

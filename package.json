@@ -11,9 +11,9 @@
     "atom": "*"
   },
   "main": "./lib/markmon",
-  "activationEvents": [
-    "markmon-preview:show"
-  ],
+  "activationCommands": {
+    "markmon-preview" : ["show"]
+  },
   "dependencies": {
     "request": "2.x",
     "underscore-plus": "1.x"
