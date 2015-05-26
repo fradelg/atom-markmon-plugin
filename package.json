@@ -1,6 +1,6 @@
 {
   "name": "markmon-preview",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A basic markmon plugin for the Atom editor",
   "repository": {
     "type": "git",
