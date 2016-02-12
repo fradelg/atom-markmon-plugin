@@ -1,55 +1,128 @@
-_ = require 'underscore-plus'
-{$, $$$, ScrollView} = require 'atom'
+{CompositeDisposable, Disposable} = require 'atom'
+{$, $$$, ScrollView}  = require 'atom-space-pen-views'
 markmon = require './markmon-command'
 path = require 'path'
 request = require 'request'
+os = require 'os'
 
 module.exports =
 
 class MarkmonView extends ScrollView
-
   atom.deserializers.add(this)
 
-  @deserialize: ({filePath}) ->
-    new MarkmonView(filepath)
+  editorSub           : null
+  onDidChangeTitle    : -> new Disposable()
+  onDidChangeModified : -> new Disposable()
 
-  @content: ->
-    @iframe class: 'markmon-preview native-key-bindings', tabindex: -1, sandbox: 'allow-same-origin allow-scripts allow-forms allow-popups'
+  @deserialize: (state) ->
+    new MarkmonView(state)
 
-  constructor: ->
+  constructor: ({@editorId, filePath}) ->
     super
+
+    @iframe = document.createElement('iframe')
+    @iframe.classList.add('markmon-preview native-key-bindings')
+    @iframe.setAttribute("sandbox", "allow-scripts allow-same-origin")
+#    @iframe.src = "http://localhost:#{atom.config.get('markmon-preview.port')}"
+
+    if @editorId?
+      @resolveEditor(@editorId)
+      @tmpPath = @getPath() # after resolveEditor
+    else
+      if atom.workspace?
+        @subscribeToFilePath(filePath)
+      else
+        atom.packages.onDidActivatePackage =>
+          @subscribeToFilePath(filePath)
+
     @child = markmon()
-    @.attr 'src', "http://localhost:#{atom.config.get('markmon-preview.port')}"
 
-    # Register updates on every existing and future editor
-    atom.workspace.eachEditor (editor) =>
-      ext = path.extname(editor.getPath()).split '.'
-      if ext[ext.length - 1] is 'md'
-        @subscribe editor.buffer, 'changed', _.debounce((=> @render()), 1000)
 
-  # Returns an object that can be retrieved when package is activated
   serialize: ->
-    deserializer: 'MarkmonView'
-    filePath: @getPath()
+    deserializer : 'MarkmonView'
+    filePath     : @getPath()
+    editorId     : @editorId
 
-  # Tear down any state and detach
   destroy: ->
+    @element.remove()
     @child.kill()
-    atom.workspace.eachEditor (editor) =>
-      @unsubscribe()
+    @editorSub.dispose()
+
+  getElement: ->
+    @element
+
+  subscribeToFilePath: (filePath) ->
+    @trigger 'title-changed'
+    @handleEvents()
+    @renderHTML()
+
+  resolveEditor: (editorId) ->
+    resolve = =>
+      @editor = @editorForId(editorId)
+
+      if @editor?
+        @trigger 'title-changed'
+        @handleEvents()
+      else
+        atom.workspace?.paneForItem(this)?.destroyItem(this)
+
+    if atom.workspace?
+      resolve()
+    else
+      atom.packages.onDidActivatePackage =>
+        resolve()
+        @renderHTML()
+
+  handleEvents: =>
+
+    changeHandler = =>
+      @renderHTML()
+      pane = atom.workspace.paneForURI(@getURI())
+      if pane? and pane isnt atom.workspace.getActivePane()
+        pane.activateItem(this)
+
+    @editorSub = new CompositeDisposable
+    ext = path.extname(editor.getPath()).split '.'
+
+    if @editor? and ext[ext.length - 1] is 'md'
+      @editorSub.add @editor.onDidStopChanging changeHandler
+      @editorSub.add @editor.onDidChangePath => @trigger 'title-changed'
+
+  renderHTML: ->
+    @showLoading()
+    if @editor?
+      @renderHTMLCode()
+
+  renderHTMLCode: (text) ->
+    if @editor.getPath()? then @save () =>
+      request
+        uri: "http://localhost:#{atom.config.get('markmon-preview.port')}"
+        method: 'PUT'
+        body: @editor.getText()
+      , (error, response, body) ->
+        console.log error if error?
+        @iframe.src = "data:text/html;charset=utf-8," + escape(body);
 
   getTitle: ->
-    'Pandoc preview'
+    if @editor?
+      "#{@editor.getTitle()} Preview"
+    else
+      "Markmon Preview"
 
-  # Update HTML with the editor content
-  render: ->
-    request
-      uri: "http://localhost:#{atom.config.get('markmon-preview.port')}"
-      method: 'PUT'
-      body: atom.workspace.getActiveEditor().getText()
-    , (error, response, body) ->
-      console.log error if error?
+  getURI: ->
+    "markmon-preview://editor/#{@editorId}"
 
-    $('iframe.markmon-preview').attr 'src', (i, val) -> val
+  getPath: ->
+    if @editor?
+      @editor.getPath()
 
-    atom.workspaceView.getActiveView()
+  showError: (result) ->
+    failureMessage = result?.message
+
+    @html $$$ ->
+      @h2 'Previewing Pandoc Failed'
+      @h3 failureMessage if failureMessage?
+
+  showLoading: ->
+    @html $$$ ->
+      @div class: 'atom-html-spinner', 'Loading HTML Preview\u2026'

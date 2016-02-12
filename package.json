@@ -1,7 +1,8 @@
 {
   "name": "markmon-preview",
+  "main": "./lib/markmon",
   "version": "0.9.1",
-  "description": "A basic markmon plugin for the Atom editor",
+  "description": "A basic markmon preview package for Atom",
   "repository": {
     "type": "git",
     "url": "https://github.com/fradelg/atom-markmon-plugin"
@@ -10,17 +11,14 @@
   "engines": {
     "atom": "*"
   },
-  "main": "./lib/markmon",
   "activationCommands": {
     "markmon-preview": [
-      "show"
+      "toggle"
     ]
   },
   "dependencies": {
     "request": "2.x",
-    "underscore-plus": "1.x"
-  },
-  "readme": "markmon",
-  "readmeFilename": "README.md",
-  "homepage": "https://github.com/fradelg/atom-markmon-plugin"
+    "underscore-plus": "1.x",
+    "atom-space-pen-views": "^2.0.5"
+  }
 }
