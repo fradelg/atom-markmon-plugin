@@ -9,8 +9,9 @@ module.exports =
     view: ''
 
   activate: ->
-    atom.workspaceView.command 'markmon-preview:show', =>
-      @show()
+    atom.commands.add 'atom-workspace',
+      'markmon-preview:show': =>
+        @show()
 
   show: ->
     return unless atom.workspace.getActiveEditor()?
