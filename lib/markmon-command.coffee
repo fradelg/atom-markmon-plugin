@@ -1,4 +1,5 @@
 spawn = require('child_process').spawn
+path  = require 'path'
 
 module.exports =
   class MarkmonController
@@ -19,7 +20,7 @@ module.exports =
 
     @init: (cb) ->
       return cb() if @markmon?
-      cmd = atom.config.get('markmon-preview.cmd')
+      cmd = path.join atom.packages.resolvePackagePath('markmon-preview'), '/node_modules/markmon/bin/markmon'
       console.log "Starting markmon daemon: #{cmd}"
       @markmon = spawn cmd, @args()
       #@markmon.stdout.on 'data', (chunk) -> console.log chunk

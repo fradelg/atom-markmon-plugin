@@ -6,13 +6,9 @@ MarkmonController = require './markmon-command'
 
 module.exports =
   config:
-    cmd:
-      type        : 'string'
-      description : 'The markmon executable name'
-      default     : 'markmon'
     port:
       type        : 'integer'
-      description : 'The port where markmon in listening'
+      description : 'The port where markmon daemon will be listening'
       default     : 3000
     command:
       type        : 'string'

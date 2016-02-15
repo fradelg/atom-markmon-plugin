@@ -10,7 +10,6 @@ It supports latex mathematical expressions thanks to Mathjax and the pandoc proc
 
 ## Settings
 
-  * `markmon-preview.cmd` which is the markmon executable
   * `markmon-preview.port` which is the local port on which server listens
   * `markmon-preview.command`, the Markdown converter to execute (pandoc is used by default)
   * `markmon-preview.stylesheet`, a CSS stylesheet for the server HTML output
@@ -21,5 +20,5 @@ To solve problems with PATH take a look at [Pandoc Preview Atom Package](https:/
 ## Acknowledgements
 
  - [Atom HTML Preview](https://github.com/webBoxio/atom-html-preview).
- - [Pandoc](http://pandoc.org/)
+ - [Pandoc](http://pandoc.org)
  - [Markmon](https://github.com/yyjhao/markmon)
