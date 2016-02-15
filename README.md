@@ -1,20 +1,14 @@
-# Markmon Preview
+# Markmon Preview package for Atom
 
-Run [markmon](https://github.com/yyjhao/markmon) as a server, send your Markdown files to it and preview the output within Atom.
+This package runs [markmon](https://github.com/yyjhao/markmon) as a server, sends your Markdown files to it and preview the output in Atom.
 
-It supports latex mathematical expressions thanks to Mathjax and pandoc processor
+It supports latex mathematical expressions thanks to Mathjax and the pandoc processor
 
-In order to make it work you must install the `markmon` npm module:
+## Commands
 
-`npm install -g markmon`
+  * `Markmon Preview: Toggle` -> Runs markdown as a server and opens a new pane to render the HTML output
 
-This package also depends on `request` and `underscore-plus` modules but both are bundled with the package.
-
-Commands:
-
-  * `Markmon Preview: Show` will run markdown as a server and opens a new pane to render the HTML output. The output is updated 1 second after the last change in the editor.
-
-There are four basic parameters in settings:
+## Settings
 
   * `markmon-preview.cmd` which is the markmon executable
   * `markmon-preview.port` which is the local port on which server listens
@@ -23,3 +17,9 @@ There are four basic parameters in settings:
   * `markmon-preview.view`, the command to execute after the server is setup
 
 To solve problems with PATH take a look at [Pandoc Preview Atom Package](https://atom.io/packages/pandoc)
+
+## Acknowledgements
+
+ - [Atom HTML Preview](https://github.com/webBoxio/atom-html-preview).
+ - [Pandoc](http://pandoc.org/)
+ - [Markmon](https://github.com/yyjhao/markmon)

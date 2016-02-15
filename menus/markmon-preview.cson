@@ -1,0 +1,16 @@
+'context-menu':
+  'atom-text-editor': [
+    {label: 'Preview in Pandoc', command: 'markmon-preview:toggle'}
+  ]
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Markmon Preview'
+      'submenu': [
+        { 'label': 'Enable Preview', command: 'markmon:toggle' }
+      ]
+    ]
+  }
+]
