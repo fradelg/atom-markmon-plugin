@@ -12,11 +12,11 @@ module.exports =
       default     : 3000
     command:
       type        : 'string'
-      description : 'The pandoc command to exec'
+      description : 'Pandoc command to render markdown code into HTML'
       default     : 'pandoc --mathjax'
     stylesheet:
       type        : 'string'
-      description : 'Path to your custom CSS stylesheet'
+      description : 'Path to your custom CSS stylesheet of preview'
       default     : ''
     view:
       type        : 'string'
